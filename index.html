@@ -170,25 +170,12 @@ h1.title{
 .btn:hover{background:var(--indigo-soft);}
 .btn.ghost{background:transparent; color:var(--indigo); border:1px solid var(--line);}
 
-/* photos */
-.photo-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-top:6px;}
-.photo-card{background:var(--washi-light); border:1px solid var(--line); border-radius:4px; padding:10px 10px 14px; box-shadow:0 6px 16px rgba(31,53,80,0.08); transform:rotate(var(--r,0deg));}
-.photo-card:nth-child(3n+1){--r:-1.2deg;}
-.photo-card:nth-child(3n+2){--r:0.8deg;}
-.photo-card:nth-child(3n+3){--r:-0.4deg;}
-.photo-card img{width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#e7dfcc;}
-.photo-cap{font-size:12.5px; margin-top:8px; color:var(--ink);}
-.photo-meta{display:flex; justify-content:space-between; align-items:center; margin-top:6px;}
-.photo-author{font-size:10.5px; font-family:'JetBrains Mono',monospace; color:var(--gold); display:inline-flex; align-items:center; gap:5px;}
-.author-dot{width:7px; height:7px; border-radius:50%; display:inline-block; flex:0 0 auto;}
-.photo-del{background:none;border:none;color:#c7bda4;font-size:11px;}
-.photo-del:hover{color:var(--momiji);}
-
 /* memories */
 .memo-list{display:flex; flex-direction:column; gap:14px;}
 .memo-card{background:var(--washi-light); border:1px solid var(--line); border-left:4px solid var(--matcha); border-radius:8px; padding:16px 18px;}
 .memo-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
 .memo-author{font-weight:700; font-size:13.5px; color:var(--indigo); display:inline-flex; align-items:center; gap:6px;}
+.author-dot{width:7px; height:7px; border-radius:50%; display:inline-block; flex:0 0 auto;}
 .memo-date{font-family:'JetBrains Mono',monospace; font-size:11px; color:#a89b83;}
 .memo-text{font-size:14px; line-height:1.7; white-space:pre-wrap;}
 .memo-del{background:none;border:none;color:#c7bda4;font-size:11px; margin-top:6px;}
@@ -223,6 +210,25 @@ textarea.memo-input{width:100%; border:1px solid var(--line); border-radius:8px;
 .board-meta{font-size:11px; color:#a89b83; margin-top:4px; font-family:'JetBrains Mono',monospace;}
 .board-del{background:none;border:none;color:#c7bda4;font-size:11px; flex:0 0 auto;}
 .board-del:hover{color:var(--momiji);}
+
+/* polls */
+.poll-create{background:var(--washi); border:1px solid var(--line); border-radius:10px; padding:14px;}
+.poll-create input{width:100%; border:1px solid var(--line); border-radius:7px; padding:9px 12px; font-size:13.5px; background:var(--washi-light); margin-bottom:8px;}
+#pollOptionsWrap{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+.poll-create-actions{display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;}
+.poll-card{background:var(--washi-light); border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin-bottom:14px;}
+.poll-question{font-weight:700; font-size:15px; color:var(--indigo); margin-bottom:4px;}
+.poll-meta{font-size:11px; color:#a89b83; font-family:'JetBrains Mono',monospace; margin-bottom:14px;}
+.poll-option{display:block; margin-bottom:10px; cursor:pointer; border:none; background:none; width:100%; text-align:left; padding:0;}
+.poll-option-row{display:flex; justify-content:space-between; align-items:baseline; font-size:13px; margin-bottom:4px; gap:8px;}
+.poll-option-row .opt-text{font-weight:600; color:var(--ink);}
+.poll-option-row .opt-text.mine{color:var(--momiji);}
+.poll-option-row .opt-count{font-family:'JetBrains Mono',monospace; color:#a89b83; font-size:11px; flex:0 0 auto;}
+.poll-bar-track{background:var(--washi); border-radius:6px; height:9px; overflow:hidden;}
+.poll-bar-fill{height:100%; background:var(--matcha); border-radius:6px; transition:width .3s;}
+.poll-bar-fill.mine{background:var(--momiji);}
+.poll-del{background:none;border:none;color:#c7bda4;font-size:11px; margin-top:4px;}
+.poll-del:hover{color:var(--momiji);}
 
 .board-item{flex-direction:column; align-items:stretch;}
 .board-row{display:flex; gap:12px; align-items:center;}
@@ -303,11 +309,12 @@ textarea.memo-input{width:100%; border:1px solid var(--line); border-radius:8px;
   .add-form .btn{width:100%;}
   .item{padding:12px 10px 12px 8px;}
   .item-place{font-size:14px;}
-  .photo-grid{grid-template-columns:repeat(auto-fill,minmax(128px,1fr)); gap:11px;}
   .board-info{margin-left:0; margin-top:10px;}
   .board-row{flex-wrap:nowrap;}
   .vote-btn{width:44px; padding:6px 0;}
   .check-add{flex-direction:column; align-items:stretch;}
+  .poll-create-actions{flex-direction:column; align-items:stretch;}
+  .poll-card{padding:14px;}
   .check-add select{width:100%;}
   .memo-card{padding:13px 14px;}
   .budget-field input, .budget-field select{width:100%;}
@@ -382,11 +389,11 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 
 <div class="tabbar" id="tabbar">
   <button class="tab active" data-tab="itinerary"><span class="stamp-mini">計</span>여행 일정</button>
-  <button class="tab" data-tab="photos"><span class="stamp-mini">写</span>사진첩</button>
   <button class="tab" data-tab="memories"><span class="stamp-mini">記</span>추억 노트</button>
   <button class="tab" data-tab="checklist"><span class="stamp-mini">備</span>체크리스트</button>
   <button class="tab" data-tab="budget"><span class="stamp-mini">予</span>예산</button>
   <button class="tab" data-tab="board"><span class="stamp-mini">案</span>의견 게시판</button>
+  <button class="tab" data-tab="polls"><span class="stamp-mini">決</span>투표</button>
 </div>
 
 <div class="page">
@@ -414,21 +421,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
       <button class="btn" id="addItemBtn">일정 추가</button>
     </div>
     <p class="hint">도장(印)을 누르면 &ldquo;다녀왔어요&rdquo; 스탬프가 찍혀요 — 계획이 그대로 여행 기록이 됩니다.</p>
-  </div>
-
-  <!-- PHOTOS -->
-  <div class="panel" id="panel-photos">
-    <div class="section-head">
-      <h2>사진첩</h2>
-      <span class="section-sub" id="photoCount"></span>
-    </div>
-    <div class="add-form" id="addPhotoForm">
-      <input name="url" placeholder="이미지 URL 붙여넣기" style="flex:2; min-width:200px;">
-      <input name="caption" placeholder="캡션 (예: 아라시야마 대나무숲)" style="flex:1.4; min-width:160px;">
-      <button class="btn" id="addPhotoBtn">사진 추가</button>
-    </div>
-    <p class="hint">이 페이지는 파일 업로드 대신 이미지 링크(URL)로 사진을 추가해요. 구글포토 등에서 &ldquo;링크 공유&rdquo;로 이미지 주소를 복사해 붙여넣어 주세요.</p>
-    <div class="photo-grid" id="photoGrid" style="margin-top:18px;"></div>
   </div>
 
   <!-- MEMORIES -->
@@ -526,6 +518,27 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
     <div id="boardWrap" style="margin-top:20px;"></div>
   </div>
 
+  <!-- POLLS -->
+  <div class="panel" id="panel-polls">
+    <div class="section-head">
+      <h2>결정 투표</h2>
+      <span class="section-sub" id="pollCount"></span>
+    </div>
+    <p class="hint" style="margin-top:0; margin-bottom:16px;">여러 선택지 중 하나로 결정해야 할 때 써보세요 — 예: &ldquo;숙소는 어디로?&rdquo; 투표를 만들면 가족들이 하나씩 골라서 결과를 바로 볼 수 있어요. (1인 1표, 다시 누르면 선택이 바뀌어요)</p>
+    <div class="poll-create">
+      <input id="pollQuestionInput" placeholder="질문 (예: 첫날 저녁 뭐 먹을까?)">
+      <div id="pollOptionsWrap">
+        <input class="poll-option-input" placeholder="선택지 1">
+        <input class="poll-option-input" placeholder="선택지 2">
+      </div>
+      <div class="poll-create-actions">
+        <button class="btn ghost" id="addPollOptionBtn" type="button">+ 선택지 추가</button>
+        <button class="btn" id="createPollBtn">투표 만들기</button>
+      </div>
+    </div>
+    <div id="pollList" style="margin-top:22px;"></div>
+  </div>
+
   <div class="foot">가족 모두가 함께 보고 수정할 수 있는 페이지예요 · 링크를 아는 사람은 누구나 편집할 수 있어요</div>
 </div>
 
@@ -590,7 +603,6 @@ function showSetupBanner(){
 const state = {
   trip: { title:'가족과 함께, 11월의 일본', subtitle:'여자친구 가족과 떠나는 여행 — 계획하고, 사진을 나누고, 기억을 남기는 곳', dest:'일본', start:'2026-11-06', end:'2026-11-09' },
   itinerary: {},
-  photos: [],
   memories: [],
   checklist: [
     {id:'c1', cat:'서류/예약', text:'여권 유효기간 확인 (6개월 이상)', done:false},
@@ -599,6 +611,7 @@ const state = {
     {id:'c4', cat:'현지 준비', text:'엔화 환전', done:false},
   ],
   suggestions: [],
+  polls: [],
   budget: { target: 0, currency: 'KRW' },
   currentDay: null,
   name: ''
@@ -617,10 +630,10 @@ function watch(key, applyFn){
 }
 const saveTrip = () => dbSet('trip-info', state.trip);
 const saveItin = () => dbSet('itinerary', state.itinerary);
-const savePhotos = () => dbSet('photos', state.photos);
 const saveMemories = () => dbSet('memories', state.memories);
 const saveChecklist = () => dbSet('checklist', state.checklist);
 const saveSuggestions = () => dbSet('suggestions', state.suggestions);
+const savePolls = () => dbSet('polls', state.polls);
 const saveBudget = () => dbSet('budget', state.budget);
 
 /* 개인 데이터(내 이름표): 이 기기의 브라우저에만 저장 (가족 공유 아님) */
@@ -630,10 +643,10 @@ function saveProfileName(){ localStorage.setItem('trip-profile-name', state.name
 function setupWatchers(){
   watch('trip-info', v=>{ if(v) state.trip = v; renderHero(); renderDayRow(); renderBudget(); renderWeatherPrompt(); });
   watch('itinerary', v=>{ state.itinerary = v || {}; renderDayRow(); renderBudget(); });
-  watch('photos', v=>{ state.photos = v || []; renderPhotos(); });
   watch('memories', v=>{ state.memories = v || []; renderMemories(); });
   watch('checklist', v=>{ state.checklist = v || []; renderChecklist(); });
   watch('suggestions', v=>{ state.suggestions = v || []; renderBoard(); });
+  watch('polls', v=>{ state.polls = v || []; renderPolls(); });
   watch('budget', v=>{ if(v) state.budget = v; renderBudget(); });
 }
 
@@ -749,30 +762,6 @@ document.getElementById('addItemBtn').addEventListener('click', ()=>{
   state.itinerary[state.currentDay].push({id:uid(), time, place, memo, cost, stamped:false});
   f.querySelector('[name=time]').value=''; f.querySelector('[name=place]').value=''; f.querySelector('[name=memo]').value=''; f.querySelector('[name=cost]').value='';
   saveItin(); renderDayRow(); renderBudget();
-});
-
-/* ---------- PHOTOS ---------- */
-function renderPhotos(){
-  const grid = document.getElementById('photoGrid'); grid.innerHTML='';
-  document.getElementById('photoCount').textContent = `${state.photos.length}장`;
-  if(!state.photos.length){ grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">아직 사진이 없어요. 이미지 링크를 추가해보세요.</div>'; return; }
-  state.photos.slice().reverse().forEach(p=>{
-    const el = document.createElement('div'); el.className='photo-card';
-    el.innerHTML = `<img src="${escapeAttr(p.url)}" alt="${escapeAttr(p.caption)}" loading="lazy" onerror="this.style.opacity=0.25">
-      <div class="photo-cap">${escapeHtml(p.caption||'')}</div>
-      <div class="photo-meta"><span class="photo-author"><span class="author-dot" style="background:${nameColor(p.author||'익명')}"></span>${escapeHtml(p.author||'익명')}</span><button class="photo-del">삭제</button></div>`;
-    el.querySelector('.photo-del').onclick = ()=>{ state.photos = state.photos.filter(x=>x.id!==p.id); savePhotos(); renderPhotos(); };
-    grid.appendChild(el);
-  });
-}
-document.getElementById('addPhotoBtn').addEventListener('click', ()=>{
-  const f = document.getElementById('addPhotoForm');
-  const url = f.querySelector('[name=url]').value.trim();
-  const caption = f.querySelector('[name=caption]').value.trim();
-  if(!url) return;
-  state.photos.push({id:uid(), url, caption, author: state.name||'익명', date: localDateStr(new Date())});
-  f.querySelector('[name=url]').value=''; f.querySelector('[name=caption]').value='';
-  savePhotos(); renderPhotos();
 });
 
 /* ---------- MEMORIES ---------- */
@@ -944,6 +933,79 @@ document.getElementById('addBoardBtn').addEventListener('click', ()=>{
   saveSuggestions(); renderBoard();
 });
 
+/* ---------- POLLS ---------- */
+function renderPolls(){
+  const wrap = document.getElementById('pollList'); wrap.innerHTML='';
+  document.getElementById('pollCount').textContent = `${state.polls.length}개의 투표`;
+  const me = state.name || '익명';
+  if(!state.polls.length){ wrap.innerHTML = '<div class="empty">아직 만들어진 투표가 없어요.</div>'; return; }
+  state.polls.slice().reverse().forEach(poll=>{
+    const totalVotes = poll.options.reduce((s,o)=> s + (o.votes||[]).length, 0);
+    const myChoice = poll.options.find(o=> (o.votes||[]).includes(me));
+    const card = document.createElement('div'); card.className='poll-card';
+    let optsHtml = '';
+    poll.options.forEach(opt=>{
+      const count = (opt.votes||[]).length;
+      const pct = totalVotes ? Math.round(count/totalVotes*100) : 0;
+      const isMine = !!(myChoice && myChoice.id===opt.id);
+      optsHtml += `
+        <button class="poll-option" data-opt="${opt.id}">
+          <div class="poll-option-row">
+            <span class="opt-text ${isMine?'mine':''}">${isMine?'✓ ':''}${escapeHtml(opt.text)}</span>
+            <span class="opt-count">${count}표 · ${pct}%</span>
+          </div>
+          <div class="poll-bar-track"><div class="poll-bar-fill ${isMine?'mine':''}" style="width:${pct}%"></div></div>
+        </button>`;
+    });
+    card.innerHTML = `
+      <div class="poll-question">${escapeHtml(poll.question)}</div>
+      <div class="poll-meta">${escapeHtml(poll.author||'익명')} · 총 ${totalVotes}표</div>
+      ${optsHtml}
+      <button class="poll-del">투표 삭제</button>`;
+    card.querySelectorAll('.poll-option').forEach(btn=>{
+      btn.onclick = ()=>{
+        const p = state.polls.find(x=>x.id===poll.id);
+        if(!p) return;
+        const wasMine = myChoice && myChoice.id===btn.dataset.opt;
+        p.options.forEach(o=>{ o.votes = (o.votes||[]).filter(n=>n!==me); });
+        if(!wasMine){
+          const target = p.options.find(o=>o.id===btn.dataset.opt);
+          if(target){ target.votes = target.votes || []; target.votes.push(me); }
+        }
+        savePolls(); renderPolls();
+      };
+    });
+    card.querySelector('.poll-del').onclick = ()=>{
+      state.polls = state.polls.filter(x=>x.id!==poll.id);
+      savePolls(); renderPolls();
+    };
+    wrap.appendChild(card);
+  });
+}
+document.getElementById('addPollOptionBtn').addEventListener('click', ()=>{
+  const wrap = document.getElementById('pollOptionsWrap');
+  const idx = wrap.children.length + 1;
+  const inp = document.createElement('input');
+  inp.className = 'poll-option-input';
+  inp.placeholder = `선택지 ${idx}`;
+  wrap.appendChild(inp);
+});
+document.getElementById('createPollBtn').addEventListener('click', ()=>{
+  const q = document.getElementById('pollQuestionInput').value.trim();
+  const optionInputs = document.querySelectorAll('.poll-option-input');
+  const opts = Array.from(optionInputs).map(i=>i.value.trim()).filter(Boolean);
+  if(!q || opts.length<2) return;
+  const poll = {
+    id: uid(), question:q, author: state.name||'익명', date: localDateStr(new Date()),
+    options: opts.map(t=>({id:uid(), text:t, votes:[]}))
+  };
+  state.polls.push(poll);
+  document.getElementById('pollQuestionInput').value='';
+  const wrap = document.getElementById('pollOptionsWrap');
+  wrap.innerHTML = '<input class="poll-option-input" placeholder="선택지 1"><input class="poll-option-input" placeholder="선택지 2">';
+  savePolls(); renderPolls();
+});
+
 function shorten(s, n){ if(!s) return ''; return s.length>n ? s.slice(0,n).trim()+'…' : s; }
 
 function renderInfoHtml(it){
@@ -974,7 +1036,7 @@ function spawnLeaves(){
 async function init(){
   if(!fbReady) showSetupBanner();
   loadProfileName();
-  renderHero(); renderName(); renderDayRow(); renderPhotos(); renderMemories(); renderChecklist(); renderBoard(); renderBudget();
+  renderHero(); renderName(); renderDayRow(); renderMemories(); renderChecklist(); renderBoard(); renderPolls(); renderBudget();
   renderWeatherPrompt(); renderFxPrompt();
   setupWatchers();
   spawnLeaves();
